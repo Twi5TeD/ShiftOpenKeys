@@ -1,0 +1,5 @@
+name: ShiftOpenKeys
+main: me.f64.shiftopenkeys.ShiftKeysOpen
+version: 1.0
+author: F64_Rx
+depend: [CrateReloaded]
