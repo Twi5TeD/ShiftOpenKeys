@@ -1,5 +1,5 @@
-name: ShiftOpenKeys
+name: CrateReloaded-Addon
 main: me.f64.shiftopenkeys.ShiftKeysOpen
-version: 1.0
+version: 1.1
 author: F64_Rx
-depend: [CrateReloaded]
+description: You can shift to open multiple keys and click keys to view rewards.

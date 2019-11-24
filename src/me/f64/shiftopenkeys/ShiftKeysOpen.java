@@ -8,13 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.hazebyte.crate.api.CratePlugin;
 
 public class ShiftKeysOpen extends JavaPlugin implements Listener {
-	public static Plugin plugin;
-	public static CratePlugin crates;
+    public static Plugin plugin;
+    public static CratePlugin crates;
 
-	@Override
-	public void onEnable() {
-		plugin = this;
-		ShiftKeysOpen.crates = (CratePlugin) getServer().getPluginManager().getPlugin("CrateReloaded");
-		Bukkit.getServer().getPluginManager().registerEvents(new onCrateInteract(this), this);
-	}
+    @Override
+    public void onEnable() {
+        plugin = this;
+        ShiftKeysOpen.crates = (CratePlugin) getServer().getPluginManager().getPlugin("CrateReloaded");
+        Bukkit.getServer().getPluginManager().registerEvents(new onCrateInteract(this), this);
+    }
 }
