@@ -1,5 +1,7 @@
 package me.f64.shiftopenkeys;
 
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.hazebyte.crate.api.crate.Crate;
 import com.hazebyte.crate.api.crate.CrateAction;
+import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.event.CrateInteractEvent;
 
 public class onCrateInteract implements Listener {
@@ -27,7 +30,7 @@ public class onCrateInteract implements Listener {
         }
         ItemStack item = p.getInventory().getItemInHand();
         Crate crate = ShiftKeysOpen.crates.getCrateRegistrar().getCrate(item);
-        if ((e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.RIGHT_CLICK_AIR))
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)
             return;
         if (crate != null) {
             ShiftKeysOpen.crates.getCrateRegistrar().preview(crate, p);
@@ -51,7 +54,11 @@ public class onCrateInteract implements Listener {
             for (; keys > 0; keys--) {
                 if (!(p.getInventory().firstEmpty() == -1)) {
                     if (crate != null) {
-                        crate.open(p, crate);
+                        p.getInventory().getItemInHand().setAmount(p.getInventory().getItemInHand().getAmount() - 1);
+                        List<Reward> rewards = crate.generatePrizes(p);
+                        for (Reward reward : rewards) {
+                            reward.onWin(p);
+                        }
                     } else {
                         break;
                     }
